@@ -21,7 +21,6 @@ export const authOptions = {
       async authorize(credentials) {
         const { email, password } = credentials;
 
-        // پیدا کردن کاربر در Sanity
         const user = await client.fetch(
           `*[_type == "user" && email == $email][0]`,
           { email }
@@ -31,7 +30,6 @@ export const authOptions = {
           throw new Error('No user found');
         }
 
-        // بررسی رمز عبور
         const isValidPassword = await bcrypt.compare(password, user.password);
 
         if (!isValidPassword) {
@@ -64,7 +62,7 @@ export const authOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  // secret: process.env.NEXTAUTH_SECRET,
 };
 
 const handler = NextAuth(authOptions);

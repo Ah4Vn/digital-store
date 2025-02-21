@@ -870,6 +870,7 @@ span.text-red {
   .cart-container {
     width: 380px;
     padding: 16px;
+    padding-left: 8px;
   }
 
   .desc {
