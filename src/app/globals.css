@@ -860,7 +860,7 @@ span.text-red {
     background-image: url('/4.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center;
+    /* background-position: center; */
     /* border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem; */
     height: 100%;
@@ -869,8 +869,9 @@ span.text-red {
 
   .cart-container {
     width: 380px;
-    padding: 16px;
-    padding-left: 8px;
+    /* padding: 16px; */
+    /* padding-left: 8px; */
+    padding-left: 1.6rem;
   }
 
   .desc {
