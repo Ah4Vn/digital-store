@@ -70,7 +70,7 @@ const ProductDetails = ({ specifications, introduction }) => {
             </p>
             <button
               onClick={toggleDescription}
-              className='text-blue-500 mt-2 inline-block hover:underline'
+              className='text-blue-500 mt-2 inline-block'
             >
               {showFullDescription ? 'بستن' : 'نمایش بیشتر'}
             </button>
@@ -78,7 +78,7 @@ const ProductDetails = ({ specifications, introduction }) => {
         )}
 
         {activeTab === 'specifications' && (
-          <div>
+          <div className='border-2'>
             {specifications.map((spec, index) => (
               <div
                 key={index}

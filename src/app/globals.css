@@ -859,11 +859,17 @@ span.text-red {
     text-align: center;
     background-image: url('/4.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    background-size: contain;
+    background-position: center;
+    /* border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem; */
     height: 100%;
     filter: grayscale(1);
+  }
+
+  .cart-container {
+    width: 380px;
+    padding: 16px;
   }
 
   .desc {
@@ -877,5 +883,13 @@ span.text-red {
   .hero-banner-image {
     display: none;
     /* object-fit: contain; */
+  }
+
+  .product-detail-image {
+    background-color: transparent;
+    width: initial;
+    height: initial;
+    margin: auto;
+    object-fit: cover;
   }
 }

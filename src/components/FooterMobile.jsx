@@ -128,7 +128,7 @@ function FooterMobile() {
           <div className='pt-9 border-t border-gray-200'>
             <div className='flex items-center justify-center flex-col gap-8 lg:gap-0 lg:flex-row lg:justify-between'>
               <span className='text-sm text-gray-500 '>
-                <p dir='rtl'>
+                <p className='text-center text-xs' dir='rtl'>
                   کلیه حقوق این سایت متعلق به فروشگاه دیجیتال سنتر می باشد.
                 </p>
               </span>

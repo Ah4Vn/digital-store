@@ -33,10 +33,13 @@ function HomeContent() {
       <div className='products-heading'>
         <h2>محصولات پرفروش</h2>
       </div>
-      <div className='products-container'>
-        {products?.slice(0, 9).map((product) => (
-          <Product key={product._id} product={product} />
-        ))}
+      {/* <div className='products-container'> */}
+      <div className='max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+          {products?.slice(0, 9).map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
+        </div>
       </div>
 
       <SpecialProducts>

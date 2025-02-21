@@ -5,7 +5,7 @@ import Login from './Login.jsx';
 import SignUp from './SignUp.jsx';
 
 const fadeInVariants = {
-  hidden: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, scale: 0 },
   visible: {
     opacity: 1,
     scale: 1,
@@ -13,7 +13,7 @@ const fadeInVariants = {
   },
   exit: {
     opacity: 0,
-    scale: 0.9,
+    scale: 0,
     transition: { duration: 0.3, ease: 'easeInOut' },
   },
 };

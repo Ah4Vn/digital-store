@@ -2,7 +2,7 @@ function ContactPage() {
   return (
     <>
       <div className='container my-12 mx-auto px-2 md:px-32'>
-        <section className='mb-32'>
+        <section className='mb-20'>
           <div className='flex justify-center'>
             <div className='text-center md:max-w-xl lg:max-w-3xl'>
               <h2 className='mb-12 px-6 text-3xl font-bold'>ارتباط با ما</h2>
@@ -137,7 +137,7 @@ function ContactPage() {
                       </div>
                     </div>
                     <div className='ml-6 grow'>
-                      <p className='mb-2 font-bold '>Press</p>
+                      <p className='mb-2 font-bold '>نمایندگی</p>
                       <p className='text-neutral-500 '>press@example.com</p>
                       <p className='text-neutral-500 '>21 234-567-89</p>
                     </div>

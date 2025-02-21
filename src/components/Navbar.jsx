@@ -86,7 +86,7 @@ function Navbar() {
             ) : (
               <button
                 onClick={handlerOpenLogin}
-                className='flex items-center gap-1 ml-3 text-xl font-semibold'
+                className='flex items-center gap-1 ml-3 text-lg md:text-xl font-semibold'
               >
                 ورود{' '}
                 <span className='mt-2' aria-hidden='true'>
@@ -100,7 +100,7 @@ function Navbar() {
             <button
               type='button'
               onClick={() => setMobileMenuOpen(true)}
-              className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 '
+              className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 transition-all'
             >
               <span className='sr-only'></span>
               <Bars3Icon aria-hidden='true' className='size-6' />

@@ -173,7 +173,7 @@ const Login = () => {
               اکانتی ندارید؟
               <button
                 onClick={handlerOpenSignup}
-                className='pr-1 font-medium text-indigo-500 underline-offset-4 hover:underline'
+                className='pr-1 font-medium text-indigo-500 underline-offset-4'
               >
                 یکی بسازید.
               </button>
