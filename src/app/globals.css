@@ -873,6 +873,10 @@ span.text-red {
     /* padding-left: 8px; */
     padding-left: 1.6rem;
   }
+  .total {
+    padding-top: 1.6rem;
+    padding-left: 0.5rem;
+  }
 
   .desc {
     display: none;
