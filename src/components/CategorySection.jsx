@@ -18,7 +18,7 @@ export default function CategorySection({ categories }) {
                   <span className='text-gray-400'></span>
                 )}
               </div>
-              <h3 className='text-gray-900 dark:text-white mt-5 text-base font-medium'>
+              <h3 className='text-gray-900 dark:text-white mt-5 text-lg lg:text-2xl font-bold'>
                 {category.title}
               </h3>
             </div>

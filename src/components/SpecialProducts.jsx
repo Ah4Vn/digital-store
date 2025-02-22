@@ -2,7 +2,7 @@ function SpecialProducts({ children }) {
   return (
     <>
       <div className='m-0 mt-32'>
-        <h2 className='text-center text-5xl font-extrabold text-[#324d67] '>
+        <h2 className='text-center text-3xl lg:text-5xl font-extrabold'>
           محصولات ویژه
         </h2>
       </div>

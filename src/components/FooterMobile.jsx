@@ -19,11 +19,11 @@ function FooterMobile() {
           <div className='flex justify-between flex-col py-8 min-[500px]:py-14 gap-8 min-[500px]:gap-16 lg:gap-0 lg:flex-row'>
             <div className='flex flex-col items-center max-lg:justify-center min-[500px]:items-start min-[500px]:flex-row gap-8 sm:gap-12 xl:gap-24'>
               <div className='block'>
-                <ul className='grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-left'>
+                <ul className='grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-center'>
                   <li>
                     <Link
                       href='/'
-                      className='text-xl font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-left'
+                      className='text-xl font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-center'
                     >
                       صفحه اصلی
                     </Link>
@@ -51,10 +51,10 @@ function FooterMobile() {
                 </ul>
               </div>
               <div className='block'>
-                <h5 className='text-2xl font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-left'>
+                <h5 className='text-2xl font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-center'>
                   محصولات
                 </h5>
-                <ul className='grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-left'>
+                <ul className='grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-center'>
                   <li>
                     <a href='/' className='hover:text-gray-900'>
                       طراحان گرافیک
@@ -78,10 +78,10 @@ function FooterMobile() {
                 </ul>
               </div>
               <div className='block'>
-                <h5 className='text-2xl font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-left'>
+                <h5 className='text-2xl font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-center'>
                   منابع
                 </h5>
-                <ul className='grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-left'>
+                <ul className='grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-center'>
                   <li>
                     <a href='/' className='hover:text-gray-900'>
                       روزنامه و مجله

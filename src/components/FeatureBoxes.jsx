@@ -25,8 +25,8 @@ export default function FeatureBoxes() {
           key={index}
           className='flex items-center gap-2 bg-white dark:bg-gray-800 rounded-lg ring shadow-xl ring-gray-900/5 p-4'
         >
-          <span className='text-4xl'>{feature.icon}</span>
-          <p className='font-bold'>{feature.title}</p>
+          <span className='text-2xl lg:text-4xl'>{feature.icon}</span>
+          <p className='text-sm lg:text-base font-bold'>{feature.title}</p>
         </div>
       ))}
     </div>

@@ -31,7 +31,7 @@ function HomeContent() {
       <CategorySection categories={categories} />
       <ProductIntroductionBanners />
       <div className='products-heading'>
-        <h2>محصولات پرفروش</h2>
+        <h2 className='text-center text-5xl font-extrabold'>محصولات پرفروش</h2>
       </div>
       {/* <div className='products-container'> */}
       <div className='max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16'>

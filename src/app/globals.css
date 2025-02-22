@@ -65,11 +65,11 @@ a {
 p {
   text-align: right;
 }
-
+/* 
 h1,
 h2 {
   font-family: 'Yekan', sans-serif;
-}
+} */
 
 .main-container {
   max-width: 1400px;
@@ -226,7 +226,6 @@ span.text-red {
   color: white;
   font-size: 10em;
   margin-left: -20px;
-  text-transform: uppercase;
 }
 .hero-banner-image {
   position: absolute;
@@ -255,7 +254,7 @@ span.text-red {
 .products-heading {
   text-align: center;
   margin: 40px 0px;
-  color: #324d67;
+  /* color: #324d67; */
 }
 .products-heading h2 {
   font-size: 40px;
@@ -415,7 +414,7 @@ span.text-red {
   margin-top: 60px;
 }
 .flex h5 {
-  font-size: 24px;
+  font-size: 18px;
 }
 .flex h4 {
   font-size: 20px;
@@ -452,7 +451,7 @@ span.text-red {
   padding: 10px 12px;
   border-radius: 15px;
   border: none;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 20px;
   background-color: #f02d34;
   color: #fff;
@@ -860,7 +859,7 @@ span.text-red {
     background-image: url('/4.jpg');
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: center;
+    /* background-position: center; */
     /* border-bottom-left-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem; */
     height: 100%;
@@ -869,8 +868,13 @@ span.text-red {
 
   .cart-container {
     width: 380px;
-    padding: 16px;
-    padding-left: 8px;
+    /* padding: 16px; */
+    /* padding-left: 8px; */
+    padding-left: 1.6rem;
+  }
+  .total {
+    padding-top: 1.6rem;
+    padding-left: 1rem;
   }
 
   .desc {
@@ -884,6 +888,10 @@ span.text-red {
   .hero-banner-image {
     display: none;
     /* object-fit: contain; */
+  }
+
+  .products-heading h2 {
+    font-size: 32px;
   }
 
   .product-detail-image {

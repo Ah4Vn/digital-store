@@ -64,7 +64,10 @@ const Cart = () => {
                   <div className='item-desc'>
                     <div className='flex top'>
                       <h5>{item.name}</h5>
-                      <h4>{formatPrice(item.originalPrice)}</h4>
+                      <h4 className='inline-flex'>
+                        <img className='mr-2' src='/Tooman-gray.svg' alt='' />
+                        {formatPrice(item.originalPrice)}
+                      </h4>
                     </div>
                     <div className='flex bottom'>
                       <div>
@@ -99,9 +102,7 @@ const Cart = () => {
             <div className='cart-bottom'>
               <div className='total' dir='rtl'>
                 <h3 className='text-foreground'>مجموع قیمت:</h3>
-                <h3 className='text-foreground'>
-                  هزار تومان {formatPrice(total)}
-                </h3>
+                <h3 className='text-foreground'>{formatPrice(total)} تومان</h3>
               </div>
               <div className='btn-container'>
                 <button type='button' className='btn' disabled>
