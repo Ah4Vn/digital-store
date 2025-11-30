@@ -2,11 +2,30 @@
 import { useState } from 'react';
 import { useStateContext } from '../context/StateContext.js';
 import { toast } from 'react-hot-toast';
+import { validateEmail, validatePassword } from '../helper/helper.js';
 
 const SignUp = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
+
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordValidations, setPasswordValidations] = useState({
+    length: false,
+    uppercase: false,
+    lowercase: false,
+    number: false,
+    special: false,
+  });
   const { openLogin, setOpenSignup, handlerOpenAgainSignup } =
     useStateContext();
+
+  // validators from helper
+
+  const canSubmit = () => {
+    const emailOk = validateEmail(form.email);
+    const passOk = Object.values(passwordValidations).every(Boolean);
+    return form.username && emailOk && passOk;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -14,6 +33,25 @@ const SignUp = () => {
     if (!form.username || !form.email || !form.password) {
       toast.error('لطفا همه فیلدها را پر کنید.');
       return;
+    }
+
+    if (!validateEmail(form.email)) {
+      setEmailError('ایمیل وارد شده معتبر نیست.');
+      toast.error('ایمیل وارد شده معتبر نیست.');
+      return;
+    } else {
+      setEmailError('');
+    }
+
+    const passRes = validatePassword(form.password);
+    if (!passRes.ok) {
+      setPasswordError(
+        'رمز عبور باید حداقل 8 کاراکتر و شامل حروف بزرگ، کوچک، عدد و کاراکتر ویژه باشد.'
+      );
+      toast.error('رمز عبور معتبر نیست.');
+      return;
+    } else {
+      setPasswordError('');
     }
 
     const res = await fetch('/api/auth/register', {
@@ -54,7 +92,7 @@ const SignUp = () => {
                   <div className='relative'>
                     <input
                       autoComplete='off'
-                      id='email'
+                      id='username'
                       name='username'
                       type='text'
                       className='peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-right text-gray-900 focus:outline-none focus:borer-rose-600'
@@ -78,10 +116,23 @@ const SignUp = () => {
                       id='email'
                       name='email'
                       type='text'
-                      className='peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-right text-gray-900 focus:outline-none focus:borer-rose-600'
-                      onChange={(e) =>
-                        setForm({ ...form, email: e.target.value })
+                      className={`peer placeholder-transparent h-10 w-full border-b-2 text-right text-gray-900 focus:outline-none focus:borer-rose-600 ${emailError ? 'border-red-500 focus:border-red-500' : validateEmail(form.email) ? 'border-green-500' : 'border-gray-300'}`}
+                      aria-invalid={!!emailError}
+                      aria-describedby={
+                        emailError
+                          ? 'email-error'
+                          : validateEmail(form.email)
+                            ? 'email-valid'
+                            : undefined
                       }
+                      onChange={(e) => {
+                        setForm({ ...form, email: e.target.value });
+                        if (e.target.value && !validateEmail(e.target.value)) {
+                          setEmailError('ایمیل وارد شده معتبر نیست.');
+                        } else {
+                          setEmailError('');
+                        }
+                      }}
                       placeholder='ایمیل'
                       required
                     />
@@ -99,10 +150,23 @@ const SignUp = () => {
                       id='password'
                       name='password'
                       type='password'
-                      className='peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
-                      onChange={(e) =>
-                        setForm({ ...form, password: e.target.value })
+                      className={`peer placeholder-transparent h-10 w-full border-b-2 text-gray-900 focus:outline-none focus:borer-rose-600 ${passwordError ? 'border-red-500 focus:border-red-500' : Object.values(passwordValidations).every(Boolean) ? 'border-green-500' : 'border-gray-300'}`}
+                      aria-invalid={!!passwordError}
+                      aria-describedby={
+                        passwordError ? 'password-error' : 'password-rules'
                       }
+                      onChange={(e) => {
+                        setForm({ ...form, password: e.target.value });
+                        const pass = validatePassword(e.target.value);
+                        setPasswordValidations(pass.validations);
+                        if (!pass.ok) {
+                          setPasswordError(
+                            'رمز عبور باید حداقل 8 کاراکتر و شامل حروف بزرگ، کوچک، عدد و کاراکتر ویژه باشد.'
+                          );
+                        } else {
+                          setPasswordError('');
+                        }
+                      }}
                       required
                       placeholder='رمز'
                     />
@@ -116,10 +180,71 @@ const SignUp = () => {
                   <div className='relative text-center pt-6'>
                     <button
                       onClick={handleSubmit}
-                      className='bg-cyan-500 text-white rounded-md px-2 py-1'
+                      className={`bg-cyan-500 text-white rounded-md px-2 py-1 ${!canSubmit() ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      disabled={!canSubmit()}
                     >
                       ثبت نام
                     </button>
+                  </div>
+
+                  {emailError ? (
+                    <p
+                      id='email-error'
+                      aria-live='polite'
+                      className='text-xs text-red-600 mt-1'
+                    >
+                      {emailError}
+                    </p>
+                  ) : validateEmail(form.email) ? (
+                    <p id='email-valid' className='text-xs text-green-600 mt-1'>
+                      ایمیل معتبر است.
+                    </p>
+                  ) : null}
+                  {passwordError ? (
+                    <p
+                      id='password-error'
+                      aria-live='polite'
+                      className='text-xs truncate w-48 text-red-600 mt-1'
+                    >
+                      {passwordError}
+                    </p>
+                  ) : null}
+
+                  <div
+                    id='password-rules'
+                    className='mt-2 text-xs text-gray-600 pl-2 space-y-1'
+                    aria-live='polite'
+                  >
+                    <div className='flex items-center gap-2'>
+                      <span
+                        className={`w-3 h-3 inline-block rounded-full ${passwordValidations.length ? 'bg-green-500' : 'bg-gray-300'}`}
+                      />
+                      <span>حداقل 8 کاراکتر</span>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <span
+                        className={`w-3 h-3 inline-block rounded-full ${passwordValidations.uppercase ? 'bg-green-500' : 'bg-gray-300'}`}
+                      />
+                      <span>حرف بزرگ (A-Z)</span>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <span
+                        className={`w-3 h-3 inline-block rounded-full ${passwordValidations.lowercase ? 'bg-green-500' : 'bg-gray-300'}`}
+                      />
+                      <span>حرف کوچک (a-z)</span>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <span
+                        className={`w-3 h-3 inline-block rounded-full ${passwordValidations.number ? 'bg-green-500' : 'bg-gray-300'}`}
+                      />
+                      <span>مقدار عددی (0-9)</span>
+                    </div>
+                    <div className='flex items-center gap-2'>
+                      <span
+                        className={`w-3 h-3 inline-block rounded-full ${passwordValidations.special ? 'bg-green-500' : 'bg-gray-300'}`}
+                      />
+                      <span>کاراکتر ویژه (مثال: !@#$%)</span>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -8,9 +8,8 @@ export default function WhyChooseThisStore() {
         <h2 className='text-4xl my-3 flex items-center justify-center font-bold'>
           چرا انتخاب ما؟
         </h2>
-        <p className='block w-full text-center text-2xl sm:text-4xl'>
-          برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود
-          ابزارهای کاربردی می باشد
+        <p className='block w-full text-center text-gray-500 text-2xl sm:text-4xl'>
+          برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع
         </p>
       </div>
 

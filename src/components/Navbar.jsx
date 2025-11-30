@@ -8,6 +8,7 @@ import Cart from './Cart.jsx';
 import ThemeToggle from './ThemeToggle.jsx';
 import { Dialog, DialogPanel, PopoverGroup } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ChevronLeft } from 'lucide-react';
 
 function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,7 +34,7 @@ function Navbar() {
               onClick={() => setShowCart(true)}
             >
               <img
-                className='w-10 h-10 object-cover'
+                className='w-5 h-5 md:w-10 md:h-10 object-cover'
                 src='/shopping-bags-shopping-bag-svgrepo-com.svg'
                 alt=''
               />
@@ -50,20 +51,7 @@ function Navbar() {
                     className='flex items-center justify-between w-full p-2 ml-4 text-lg rounded-sm md:border-0  md:p-0 md:w-auto'
                   >
                     {session.user.name}
-                    <svg
-                      className='w-2.5 h-2.5 ms-2.5'
-                      aria-hidden='true'
-                      fill='none'
-                      viewBox='0 0 10 6'
-                    >
-                      <path
-                        stroke='currentColor'
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth='2'
-                        d='m1 1 4 4 4-4'
-                      />
-                    </svg>
+                    <ChevronLeft className='-rotate-90 w-2.5 h-2.5 ms-1.5' />
                   </button>
 
                   {dropdownNavbar && (

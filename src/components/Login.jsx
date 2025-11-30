@@ -4,28 +4,45 @@ import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useStateContext } from '../context/StateContext.js';
 import { toast } from 'react-hot-toast';
+import { validateEmail } from '../helper/helper.js';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
   const router = useRouter();
   const { openLogin, openSignup, handlerOpenSignup, setOpenLogin } =
     useStateContext();
 
+  const canSubmit = () => validateEmail(form.email) && form.password;
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+
+    if (!validateEmail(form.email)) {
+      setEmailError('ایمیل وارد شده معتبر نیست.');
+      toast.error('ایمیل وارد شده معتبر نیست.');
+      return;
+    } else setEmailError('');
+    if (!form.password) {
+      setPasswordError('لطفا رمز عبور را وارد کنید.');
+      toast.error('لطفا رمز عبور را وارد کنید.');
+      return;
+    } else setPasswordError('');
 
     const res = await signIn('credentials', {
       redirect: false,
       email: form.email,
       password: form.password,
     });
-
-    setOpenLogin(false);
-
     if (res?.error) {
       setError(toast.error('ایمیل یا رمز عبور اشتباه است.'));
+    } else {
+      toast.success('با موفقیت وارد شدید!');
+      router.refresh();
+      setOpenLogin(false);
     }
   };
   return (
@@ -55,10 +72,21 @@ const Login = () => {
                       id='email'
                       name='email'
                       type='text'
-                      className='peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-right text-gray-900 focus:outline-none focus:borer-rose-600'
-                      onChange={(e) =>
-                        setForm({ ...form, email: e.target.value })
+                      className={`peer placeholder-transparent h-10 w-full border-b-2 text-right text-gray-900 focus:outline-none focus:borer-rose-600 ${emailError ? 'border-red-500 focus:border-red-500' : validateEmail(form.email) ? 'border-green-500' : 'border-gray-300'}`}
+                      aria-invalid={!!emailError}
+                      aria-describedby={
+                        emailError
+                          ? 'login-email-error'
+                          : validateEmail(form.email)
+                            ? 'login-email-valid'
+                            : undefined
                       }
+                      onChange={(e) => {
+                        setForm({ ...form, email: e.target.value });
+                        if (e.target.value && !validateEmail(e.target.value))
+                          setEmailError('ایمیل وارد شده معتبر نیست.');
+                        else setEmailError('');
+                      }}
                       required
                       placeholder='ایمیل'
                     />
@@ -75,10 +103,17 @@ const Login = () => {
                       id='password'
                       name='password'
                       type='password'
-                      className='peer placeholder-transparent h-10 w-full border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:borer-rose-600'
-                      onChange={(e) =>
-                        setForm({ ...form, password: e.target.value })
+                      className={`peer placeholder-transparent h-10 w-full border-b-2 text-gray-900 focus:outline-none focus:borer-rose-600 ${passwordError ? 'border-red-500 focus:border-red-500' : form.password ? 'border-green-500' : 'border-gray-300'}`}
+                      aria-invalid={!!passwordError}
+                      aria-describedby={
+                        passwordError ? 'login-password-error' : undefined
                       }
+                      onChange={(e) => {
+                        setForm({ ...form, password: e.target.value });
+                        if (e.target.value && e.target.value.length < 8)
+                          setPasswordError('رمز باید حداقل 8 کاراکتر باشد.');
+                        else setPasswordError('');
+                      }}
                       required
                       placeholder='رمز'
                     />
@@ -92,11 +127,37 @@ const Login = () => {
                   <div className='relative text-center pt-4'>
                     <button
                       onClick={handleSubmit}
-                      className='bg-cyan-500 text-white rounded-md px-5 py-1'
+                      className={`bg-cyan-500 text-white rounded-md px-5 py-1 ${!canSubmit() ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      disabled={!canSubmit()}
                     >
                       ورود
                     </button>
                   </div>
+                  {emailError ? (
+                    <p
+                      id='login-email-error'
+                      aria-live='polite'
+                      className='text-xs text-red-600 mt-1'
+                    >
+                      {emailError}
+                    </p>
+                  ) : validateEmail(form.email) ? (
+                    <p
+                      id='login-email-valid'
+                      className='text-xs text-green-600 mt-1'
+                    >
+                      ایمیل معتبر است.
+                    </p>
+                  ) : null}
+                  {passwordError ? (
+                    <p
+                      id='login-password-error'
+                      aria-live='polite'
+                      className='text-xs text-red-600 mt-1'
+                    >
+                      {passwordError}
+                    </p>
+                  ) : null}
                 </div>
               </div>
             </div>

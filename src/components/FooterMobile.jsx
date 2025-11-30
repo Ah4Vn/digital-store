@@ -106,7 +106,7 @@ function FooterMobile() {
               </div>
             </div>
             <div className='block lg:max-w-md'>
-              <h3 className='font-manrope font-semibold text-2xl leading-9 mb-8 text-center lg:text-left'>
+              <h3 className='font-manrope font-semibold text-lg leading-9 mb-8 text-center lg:text-left'>
                 به خبرنامه بپیوندید تا از جدیدترین محصولات با خبر شوید
               </h3>
               <div className='lg:bg-gray-100 lg:rounded-full lg:h-16 lg:p-1.5 lg:flex-row gap-6 lg:gap-0 flex-col flex items-center justify-between'>

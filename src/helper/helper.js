@@ -33,3 +33,23 @@ export const removeItemFromLocalStorage = (itemId) => {
 };
 
 export { shortenAvgRate, formatPrice };
+
+export const validateEmail = (email) => {
+  if (!email) return false;
+  const re =
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\\.,;:\s@\"]+\.)+[^<>()[\]\\.,;:\s@\"]{2,})$/i;
+  return re.test(String(email).toLowerCase());
+};
+
+export const passwordRules = (password) => ({
+  length: password?.length >= 8,
+  uppercase: /[A-Z]/.test(password || ''),
+  lowercase: /[a-z]/.test(password || ''),
+  number: /[0-9]/.test(password || ''),
+  special: /[!@#$%^&*(),.?":{}|<>]/.test(password || ''),
+});
+
+export const validatePassword = (password) => {
+  const validations = passwordRules(password);
+  return { ok: Object.values(validations).every(Boolean), validations };
+};
