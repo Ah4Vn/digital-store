@@ -21,7 +21,11 @@ function HomeContent() {
 
   if (loading) return <LoadingPage />;
   if (error)
-    return <div>مشکلی به وجود آمده، لطفا چند لحظه دیگر دوباره تلاش کنید</div>;
+    return (
+      <div className='text-center'>
+        مشکلی به وجود آمده، لطفا چند لحظه دیگر دوباره تلاش کنید
+      </div>
+    );
 
   const { products, bannerData, categories } = landingPage;
 

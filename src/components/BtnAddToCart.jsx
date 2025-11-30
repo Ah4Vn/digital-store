@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addItem, increase, decrease } from '../store/slices/cartSlice';
 import { useSession } from 'next-auth/react';
 import { addItemToLocalStorage } from '../helper/helper';
+import { ShoppingCart } from 'lucide-react';
 
 function BtnAddToCart({ product }) {
   const dispatch = useDispatch();
@@ -27,13 +28,8 @@ function BtnAddToCart({ product }) {
   };
   return (
     <>
-      <button className='focus:outline-none focus:ring-blue-300 px-5 py-2.5 text-center'>
-        <img
-          onClick={handleAddToCart}
-          className='w-10 h-10'
-          src='/shopping-cart-svgrepo-com.svg'
-          alt=''
-        />
+      <button className='focus:outline-none focus:ring-blue-300 px-1.5 py-2.5 text-center'>
+        <ShoppingCart onClick={handleAddToCart} className='w-8 h-8' />
       </button>
     </>
   );

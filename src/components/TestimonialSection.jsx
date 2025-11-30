@@ -34,7 +34,7 @@ const TestimonialSection = ({
               <div className='flex justify-end mt-8'>
                 <Link
                   href='/'
-                  className='inline-block w-full text-center font-medium text-gray-100 bg-green-600 py-4 px-2 hover:bg-green-800 hover:shadow-md md:w-32'
+                  className='inline-block w-full text-center font-medium text-gray-100 bg-green-600 py-4 px-2 rounded-md hover:bg-green-800 hover:shadow-md md:w-32'
                 >
                   مطالب بیشتر
                 </Link>
@@ -66,7 +66,7 @@ const TestimonialSection = ({
               <div className='flex justify-end mt-8'>
                 <Link
                   href='/'
-                  className='inline-block w-full text-center font-medium text-gray-100 bg-green-600 py-4 px-2 hover:bg-green-800 hover:shadow-md md:w-32'
+                  className='inline-block w-full text-center font-medium text-gray-100 bg-green-600 py-4 px-2 rounded-md hover:bg-green-800 hover:shadow-md md:w-32'
                 >
                   مطالب بیشتر
                 </Link>

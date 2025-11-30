@@ -3,6 +3,8 @@
 import { useContext } from 'react';
 import { ThemeContext } from '@/context/ThemeContext';
 
+import { MoonStar, Sun } from 'lucide-react';
+
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
@@ -12,7 +14,7 @@ export default function ThemeToggle() {
       className='w-10 h-10 font-black mt-2 transition'
       style={{ fontSize: 'x-large' }}
     >
-      {theme === 'light' ? '🌙' : '☀️'}
+      {theme === 'light' ? <MoonStar /> : <Sun />}
     </button>
   );
 }

@@ -15,8 +15,8 @@ const HeroBanner = ({
             alt='headphones'
             className='hero-banner-image rounded-lg'
           />
-          <div>
-            <Link href={`/product/hdfwn-by-sym-vj083`}>
+          <div className='hidden lg:inline-block'>
+            <Link href={`/product/hdfwn-blwtwthy-mdl-p39-2021`}>
               <button className='btn-hero' type='button'>
                 {buttonText}
               </button>

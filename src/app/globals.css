@@ -858,7 +858,7 @@ span.text-red {
     text-align: center;
     background-image: url('/4.jpg');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     /* background-position: center; */
     /* background-position: center; */
     /* border-bottom-left-radius: 0.5rem;

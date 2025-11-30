@@ -78,16 +78,16 @@ const ProductDetails = ({ specifications, introduction }) => {
         )}
 
         {activeTab === 'specifications' && (
-          <div className='border-2'>
+          <div className=''>
             {specifications.map((spec, index) => (
               <div
                 key={index}
-                className='flex justify-between items-center p-4 border-b border-gray-200'
+                className='flex justify-between items-center p-4 border-b border-gray-300 dark:border-gray-700'
               >
                 <div className='text-right w-1/3'>
                   <span className='font-bold'>{spec.title}</span>
                 </div>
-                <div className='text-center w-2/3'>
+                <div className='text-right w-2/3'>
                   <span>{spec.details}</span>
                 </div>
               </div>

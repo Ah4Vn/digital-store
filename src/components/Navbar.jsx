@@ -86,12 +86,12 @@ function Navbar() {
             ) : (
               <button
                 onClick={handlerOpenLogin}
-                className='flex items-center gap-1 ml-3 text-lg md:text-xl font-semibold'
+                className='flex items-center gap-1 ml-3 mr-2 text-base md:text-lg font-medium'
               >
-                ورود{' '}
-                <span className='mt-2' aria-hidden='true'>
+                ورود | ثبت‌نام
+                {/* <span className='mt-2' aria-hidden='true'>
                   &rarr;
-                </span>
+                </span> */}
               </button>
             )}
             <ThemeToggle />
@@ -99,7 +99,7 @@ function Navbar() {
           <div className='flex lg:hidden'>
             <button
               type='button'
-              onClick={() => setMobileMenuOpen(true)}
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
               className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 transition-all'
             >
               <span className='sr-only'></span>
@@ -170,7 +170,7 @@ function Navbar() {
               </Link>
               <button
                 type='button'
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
                 className='-m-2.5 rounded-md p-2.5 text-gray-700'
               >
                 <XMarkIcon aria-hidden='true' className='size-6' />

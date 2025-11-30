@@ -6,11 +6,13 @@ import { client } from '../../sanity/lib/client';
 import { motion, AnimatePresence } from 'framer-motion';
 import Product from '@/components/Product';
 import LoadingPage from '../loading';
+import { ChevronLeft } from 'lucide-react';
 
 export default function ProductsPage() {
   const [filter, setFilter] = useState('پربازدیدترین');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 10000000 });
   const [availability, setAvailability] = useState(false);
+  const [showCategory, setShowCategory] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [products, setProducts] = useState([]);
@@ -148,7 +150,7 @@ export default function ProductsPage() {
         <title>Products Page</title>
       </Head>
 
-      <div className='w-full md:w-3/4 p-4'>
+      <div className='w-full md:w-3/4 pt-4 px-16'>
         <div className='flex flex-wrap items-center md:justify-between lg:flex-nowrap lg:gap-2 mb-4'>
           <div className='flex flex-wrap items-end justify-center lg:flex-nowrap md:items-center space-y-2 space-x-4 md:space-y-0 *:rounded-full *:bg-sky-50 *:px-6 *:py-2 dark:*:border-sky-500/15 dark:*:bg-sky-500/10'>
             {[
@@ -239,26 +241,40 @@ export default function ProductsPage() {
 
         {/* Category Filter */}
         <div className='mb-4'>
-          <h3 className='text-lg font-medium mb-2'>دسته بندی</h3>
-          <div className='flex flex-col justify-end space-y-2'>
-            {categories.map((category) => (
-              <label
-                key={category.value}
-                className='flex items-center justify-end'
-              >
-                <span className='text-right'>{category.label}</span>
+          <div
+            className='flex justify-between cursor-pointer'
+            onClick={() => setShowCategory((prev) => !prev)}
+          ></div>
 
-                <input
-                  type='checkbox'
-                  className='ml-2'
-                  checked={selectedCategories.includes(category.value)}
-                  onChange={(e) =>
-                    handleCategoryChange(category.value, e.target.checked)
-                  }
-                />
-              </label>
-            ))}
-          </div>
+          {showCategory === true ? (
+            <>
+              <ChevronLeft className=' -rotate-90' />
+              <div className='flex'>
+                <div className='flex flex-col justify-end space-y-2'>
+                  {categories.map((category) => (
+                    <label
+                      key={category.value}
+                      className='flex items-center justify-end'
+                    >
+                      <span className='text-right'>{category.label}</span>
+
+                      <input
+                        type='checkbox'
+                        className='ml-2'
+                        checked={selectedCategories.includes(category.value)}
+                        onChange={(e) =>
+                          handleCategoryChange(category.value, e.target.checked)
+                        }
+                      />
+                    </label>
+                  ))}
+                </div>
+              </div>
+            </>
+          ) : (
+            <ChevronLeft />
+          )}
+          <h3 className='text-lg font-medium mb-2'>دسته بندی</h3>
         </div>
 
         {/* Price Range Filter */}

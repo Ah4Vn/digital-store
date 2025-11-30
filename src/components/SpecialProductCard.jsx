@@ -25,12 +25,12 @@ function SpecialProductCard({
           dir='rtl'
         >
           <p className='text-center text-2xl font-semibold text-rose-600'>
-            محصول ویژه
+            تخفیف ویژه
           </p>
           <p className='text-center text-lg mt-4 w-48'>{name}</p>
           <Link
             href={`/product/${slug.current}`}
-            className='bg-orange-500 p-2 font-medium mt-3 text-xs'
+            className='bg-orange-500 rounded-2xl p-2 font-medium mt-3 text-xs'
           >
             مشاهده محصول
           </Link>
